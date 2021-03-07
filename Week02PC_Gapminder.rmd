@@ -1,0 +1,110 @@
+---
+title: "Week02PC_Gapminder"
+author: "Andrew Croft"
+date: "07/03/2021"
+output:
+  pdf_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+#clear workspace
+a<-1
+rm(list=ls())
+# if you need current working directory, use getwd()
+# set working directory, use fwd slash not back.
+setwd("C:/Users/cacro/Documents/R/Data_Analysis_Actuaries/Week02PC_Gapminder")
+#
+knitr::opts_chunk$set(echo = TRUE, fig.pos='h')
+library(tidyverse)
+library(gapminder)
+data(gapminder)
+```
+
+## Introduction
+
+In this document, we will be exploring the Gapminder dataset.
+
+## Observations of Gapminder
+
+### Countries with life expectancy less than 30 at any time in dataset
+
+```{r, echo=FALSE}
+lowlc<- gapminder %>% filter(lifeExp<30)
+knitr::kable(lowlc,format="markdown")
+```
+
+### Afghanistan's Life Expectancy over time
+**Rose strongly from 1952 but plateaued in 1980s with 30 years of war between the Russians, Taliban, Americans plus allies including Australia. Amazingly heading up again at 2007.**
+
+```{r, echo=FALSE}
+data01 <- gapminder %>% filter(country=="Afghanistan") %>% select(year,lifeExp)
+plot(data01$year, data01$lifeExp,type="b")
+```
+
+### Rwanda's Life Expectancy over time
+**Calamity in 1992 - war as I recall.**
+
+```{r Rwanda Life Expectancy over Time, echo=FALSE}
+data02 <- gapminder %>% filter(country=="Rwanda") %>% select(year,lifeExp)
+plot(data02$year, data02$lifeExp,type="b")
+```
+
+
+### Countries with life expectancy greater than 81
+
+```{r, echo=FALSE}
+highlc<- gapminder %>% filter(lifeExp>81) %>% arrange(desc(lifeExp))
+knitr::kable(highlc,format="markdown")
+```
+
+### Japan's Life Expectancy over time
+**Positive trend post-war, but also reflects their post war economic 'miracle'.**
+
+```{r Japan Life Expectancy over Time, echo=FALSE}
+data01 <- gapminder %>% filter(country=="Japan") %>% select(year,lifeExp)
+plot(data01$year, data01$lifeExp,type="b")
+```
+
+### Hong Kong, China's Life Expectancy over time
+
+```{r Hong Kong Life Expectancy over Time, echo=FALSE}
+data02 <- gapminder %>% filter(country=="Hong Kong, China") %>% select(year,lifeExp)
+plot(data02$year, data02$lifeExp,type="b")
+```
+
+### Iceland's Life Expectancy over time
+
+```{r Iceland Life Expectancy over Time, echo=FALSE}
+data02 <- gapminder %>% filter(country=="Iceland") %>% select(year,lifeExp)
+plot(data02$year, data02$lifeExp,type="b")
+```
+
+### Switzerland's Life Expectancy over time
+
+```{r Switzerland Life Expectancy over Time, echo=FALSE}
+data02 <- gapminder %>% filter(country=="Switzerland") %>% select(year,lifeExp)
+plot(data02$year, data02$lifeExp,type="b")
+```
+
+### Australia's Life Expectancy over time
+**Consistent with other developed countries, a positive trend since 1952.**
+
+```{r Australia Life Expectancy over Time, echo=FALSE}
+data02 <- gapminder %>% filter(country=="Australia") %>% select(year,lifeExp)
+plot(data02$year, data02$lifeExp,type="b")
+```
+
+
+### Life expectancy by continent in 2007
+
+*How good is it to be in Oceania?  Hmmm....*
+
+```{r, echo=FALSE}
+data03 <-gapminder %>% filter(year==2007) 
+boxplot(lifeExp~continent,data=data03)
+```
+```{r, echo=FALSE}
+# Script run completed.
+```
+
